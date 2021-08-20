@@ -16,8 +16,8 @@ export default class App extends Component {
     this.state = {
       data: [
         {label: 'Going to learn React', important: true, like: false, id: '0'},
-        {label: 'Play', like: true, important: false, like: false, id: '1'},
-        {label: 'Work', like: false, important: true, like: false, id: '2'},
+        {label: 'Play', like: false, important: false, id: '1'},
+        {label: 'Work', like: false, important: false, id: '2'},
       ]
     };
 
