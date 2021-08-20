@@ -40,7 +40,7 @@ export default class PostListItem extends Component {
     }
 
     return (
-      <li className={classNames} id={id}>
+      <li className={classNames} key={id}>
         <span className="app-list-item-label" onClick={this.onLike}>
           {label}
         </span>
