@@ -20,6 +20,7 @@ export default class App extends Component {
         {label: 'Work', like: false, important: false, id: '2'},
       ],
       term: '',
+      filter: 'all',
     };
 
     this.deleteItem = (id) => {
@@ -80,7 +81,6 @@ export default class App extends Component {
       if (term.length === 0) {
         return items;
       }
-      console.log('sss');
       return items.filter(item => item.label.indexOf(term) > -1)
     }
 
@@ -88,13 +88,24 @@ export default class App extends Component {
       this.setState({term})
     }
 
+    this.filterPost = (items, filter) => {
+      if (filter === 'like') {
+        return items.filter(item => item.like);
+      } else {
+        return items;
+      }
+    }
+
+    this.onFilterSelect = (filter) => {
+      this.setState({filter})
+    }
   }
 
   render() {
-    const {data, term} = this.state,
+    const {data, term, filter} = this.state,
           liked       = data.filter(item => item.like).length,
           allPosts    = data.length,
-          visiblePosts = this.searchPost(data, term); 
+          visiblePosts = this.filterPost(this.searchPost(data, term), filter); 
 
 
     return (
@@ -107,7 +118,10 @@ export default class App extends Component {
           <SearchPanel
             onUpdateSearch={this.onUpdateSearch}
           />  
-          <PostStatusFilter/>
+          <PostStatusFilter
+            filter={filter}
+            onFilterSelect={this.onFilterSelect}
+          />
         </div>
         <PostList 
           posts={visiblePosts} 
