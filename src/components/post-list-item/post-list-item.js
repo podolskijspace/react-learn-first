@@ -2,32 +2,7 @@ import React, {Component} from 'react';
 
 import './post-list-item.css';
 
-export default class PostListItem extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      important: props.important,
-      like: props.like,
-    };
-    
-    this.onImportant = () => {
-      this.setState(({important}) => ({
-        important: !important,
-      }))
-    }
-
-    this.onLike = () => {
-      this.setState(({like}) => ({
-        like: !like,
-      }))
-    }
-    
-  }
-
-  render () {
-    const {label, id, onDelete} = this.props,
-          {important, like} = this.state;
-
+const PostListItem = ({label, id, onDelete, onToggleImportant, onToggleLiked, important, like}) => {
 
     let classNames = 'app-list-item d-flex justify-content-between';
 
@@ -41,11 +16,11 @@ export default class PostListItem extends Component {
 
     return (
       <li className={classNames} key={id}>
-        <span className="app-list-item-label" onClick={this.onLike}>
+        <span className="app-list-item-label" onClick={onToggleLiked}>
           {label}
         </span>
         <div className="d-flex justify-content-center align-items-center">
-          <button type="submit" className="btn-star btn-sm" onClick={this.onImportant}>
+          <button type="submit" className="btn-star btn-sm" onClick={onToggleImportant}>
             <i className="fa fa-star"></i>
           </button>
           <button type="submit" className="btn-trash btn-sm" onClick={onDelete}>
@@ -55,5 +30,6 @@ export default class PostListItem extends Component {
         </div>
       </li>
     )
-  }
 }
+
+export default PostListItem;
