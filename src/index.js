@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 import './index.css'
 
+
+//Функция, чтобы вставить наше приложение в root
 ReactDOM.render(
   <React.StrictMode>
     <App />

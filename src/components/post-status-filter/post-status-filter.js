@@ -13,8 +13,10 @@ export default class PostStatusFilter extends Component {
   }
 
   render () {
+    const {filter, onFilterSelect} = this.props;
+
     const buttons   = this.buttons.map(({name, label}) => {
-      const active      = this.props.filter === name,
+      const active      = filter === name,
             newClass    = active ? 'btn-info' : 'btn-outline-secondary';
 
       return (
@@ -22,7 +24,7 @@ export default class PostStatusFilter extends Component {
           type="button" 
           className={`btn ${newClass}`} 
           key={name} 
-          onClick={() => this.props.onFilterSelect(name)}
+          onClick={() => onFilterSelect(name)}
         >
           {label}
         </button>
